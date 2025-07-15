@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Username</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .fa-arrow-left{
+            font-size: 1.3rem;
+        }
+        .back{
+            border: none;
+            background-color: #fff;
+        }
+        button{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>
+        <a href="http://localhost:8080/user"><button class="back"><i class="fa-solid fa-arrow-left"></i></button></a>
+        Editing user: <%= user.email %>
+    </h2>
+    <form method="POST" action="/user/<%= user.id%>?_method=PATCH" >
+        <textarea name="username"><%= user.username %></textarea> 
+        <br> <br>
+        <input type="password" name="password" placeholder="Enter password">
+        <br> <br>
+        <button type="submit">edit</button>
+    </form> 
+
+</body>
+</html>

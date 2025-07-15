@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management App</title>
+    <style>
+        button{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>HOME PAGE</h2>
+    <h4>Number of Users: <%= userCount %></h4>
+
+    <form method="GET" action="/user/add">
+        <button type="submit">Join as a user</button>
+        <a href="http://localhost:8080/user"><button type="button">All users</button></a>
+    </form>
+
+    
+</body>
+</html>

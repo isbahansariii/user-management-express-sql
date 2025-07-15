@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add user</title>
+    
+    <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- internal css -->
+    <style>
+        .fa-arrow-left{
+            font-size: 1.3rem;
+        }
+        .back{
+            border: none;
+            background-color: #fff;
+        }
+        button{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>
+        <a href="http://localhost:8080"><button class="back"><i class="fa-solid fa-arrow-left"></i></button></a>
+        ADD USER
+    </h2>
+    <form method="POST" action="/user">
+        <input type="text" name="username" placeholder="Enter username" required>
+        <br><br>
+        <input type="email" name="email" placeholder="Enter email" required>
+        <br><br>
+        <input type="password" name="password" placeholder="Enter password" required>
+        <br><br>
+        <button type="submit">Add user</button>
+    </form>
+</body>
+</html>

@@ -9,7 +9,7 @@ A full-stack user management CRUD application built using **Node.js**, **Express
 - ✅ Add new users with unique email & username
 - 📋 View all users in a structured table
 - ✏️ Edit usernames after password verification
-- ❌ Delete users securely with password confirmation
+- ❌ Delete users securely with email and password confirmation
 - ⚠️ Error pages for duplicate entries and invalid actions
 - 🔁 Fake user generator for testing (using `faker`)
 - 🧾 Clean, server-rendered EJS templates

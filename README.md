@@ -125,7 +125,6 @@ http://localhost:8080
 
 * 🔐 Hash passwords using `bcrypt`
 * ✅ Add client-side form validation
-* 🔄 Convert to REST API
 * 🖼️ Enhance UI using Tailwind or Bootstrap
 * 🌐 Deploy using Render or Vercel (backend with DB hosting)
 

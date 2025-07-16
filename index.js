@@ -123,7 +123,7 @@ app.get("/user/:id", (req, res)=>{
 })
 
 // update user
-app.patch("/user:id", (req, res)=>{
+app.patch("/user/:id", (req, res)=>{
     let {password: formPass, username: formUser} = req.body;
     let {id} = req.params;
 
@@ -134,19 +134,75 @@ app.patch("/user:id", (req, res)=>{
             let error = err.message;
             res.render("error.ejs", {error});
         }
+        let user = result[0];
+
+        // auth
+        if(formPass != user.password) res.render("wrongpass_edit.ejs", {user});
         else{
-            console.log(result)
-            res.send("updating !!")
+            let q = `UPDATE user SET username='${formUser}' WHERE id = ?`;
+            connection.query(q, id, (err, result)=>{
+                if (err){
+                    console.log(err)
+                    let error = err.message;
+                    res.render("error.ejs", {error});
+                }
+                else res.redirect("/user");
+            })
         }
     })
-
 })
 
 // ---------------------------DELETE USER----------------------------
 // authentication user from
+app.get("/user/:id/auth", (req, res)=>{
+    let {id} = req.params;
+    let q = "SELECT * FROM user WHERE id = ? ";
+
+    connection.query(q, id, (err, result)=>{
+        if(err) {
+            console.log(err);
+            let error = err.message;
+            res.render("error.ejs", {error});
+        }
+        else{
+            let user = result[0];
+            res.render("auth.ejs", {user})
+        }
+    })
+})
 
 // delete user
+app.delete("/user/:id", (req, res)=>{
+    let {id} = req.params;
+    let {password} = req.body;
+    let q = "SELECT * FROM user WHERE id = ? ";
 
+    connection.query(q, id, (err, result)=>{
+        if (err) {
+           console.log(err);
+           let error = err.message;
+           res.render("error.ejs", {error}); 
+        }
+        else{
+            let user = result[0];
+            // auth checking
+            if(password != user.password) res.render("wrongpass_auth.ejs", {user});
+            else{
+                let q = "DELETE FROM user WHERE id = ?"
+                connection.query(q, id, (err, result)=>{
+                    if(err) {
+                        console.log(err);
+                        let error = err.message;
+                        res.render("error.ejs", {error});
+                    }
+                    else{
+                        res.redirect("/user");
+                    }
+                })
+            }
+        }
+    })
+})
 
 // --------------------------------starting server---------------------
 app.listen(port, ()=>{

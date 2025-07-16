@@ -174,7 +174,7 @@ app.get("/user/:id/auth", (req, res)=>{
 // delete user
 app.delete("/user/:id", (req, res)=>{
     let {id} = req.params;
-    let {password} = req.body;
+    let {password, email} = req.body;
     let q = "SELECT * FROM user WHERE id = ? ";
 
     connection.query(q, id, (err, result)=>{
@@ -186,7 +186,7 @@ app.delete("/user/:id", (req, res)=>{
         else{
             let user = result[0];
             // auth checking
-            if(password != user.password) res.render("wrongpass_auth.ejs", {user});
+            if((password!=user.password) || (email!=user.email)) res.render("wrongpass_auth.ejs", {user});
             else{
                 let q = "DELETE FROM user WHERE id = ?"
                 connection.query(q, id, (err, result)=>{

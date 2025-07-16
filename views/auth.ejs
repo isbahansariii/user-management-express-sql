@@ -16,14 +16,21 @@
         button{
             cursor: pointer;
         }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 20rem;
+        }
     </style>
 </head>
 <body>
     <h2>
         <a href="http://localhost:8080/user"><button class="back"><i class="fa-solid fa-arrow-left"></i></button></a>
-        Password Verification
+        Verification
     </h2>
     <form method="POST" action="/user/<%= user.id %>?_method=DELETE">
+        <input type="text" name="email" placeholder="Confirm email">
         <input type="password" name="password" placeholder="Confirm password" required>
         <button type="submit">Delete</button>
     </form>
